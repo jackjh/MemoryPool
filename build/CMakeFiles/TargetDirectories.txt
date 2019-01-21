@@ -1,0 +1,6 @@
+/home/jack/RD/code/git_push/MemoryPool/build/CMakeFiles/rebuild_cache.dir
+/home/jack/RD/code/git_push/MemoryPool/build/CMakeFiles/main.dir
+/home/jack/RD/code/git_push/MemoryPool/build/CMakeFiles/edit_cache.dir
+/home/jack/RD/code/git_push/MemoryPool/build/MemPool/CMakeFiles/rebuild_cache.dir
+/home/jack/RD/code/git_push/MemoryPool/build/MemPool/CMakeFiles/MemPool.dir
+/home/jack/RD/code/git_push/MemoryPool/build/MemPool/CMakeFiles/edit_cache.dir

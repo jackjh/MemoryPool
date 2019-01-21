@@ -1,4 +1,4 @@
-#include "MemoryPool.h"
+#include "MemPool/MemoryPool.h"
 #include <iostream>
 #include <queue>
 #include <time.h>
@@ -30,7 +30,7 @@ private:
 };
 
 #ifdef TEST_MEM
-MemoryPool* Test::mPool = new MemoryPool(sizeof(Test), 1024, 512, false);
+MemoryPool* Test::mPool = new MemoryPool(sizeof(Test), 1024, false);
 #endif // TEST_MEM
 
 int main() {
@@ -47,7 +47,7 @@ int main() {
 			q.pop();
 		}
 	}
-	cout << "using MemoryPool..." << endl;	// 21s
+	cout << "using MemoryPool..." << endl;		// 2
 #else
 	for (int i = 0; i < 3000; i++) {
 		for (int j = 0; j < 3000; j++) {
@@ -58,7 +58,7 @@ int main() {
 			q.pop();
 		}
 	}
-	cout << "using standard new..." << endl;	// 23s
+	cout << "using standard new..." << endl;	// 1
 #endif
 	time_t end;
 	time(&end);

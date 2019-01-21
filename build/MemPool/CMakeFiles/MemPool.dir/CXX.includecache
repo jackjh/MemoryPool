@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jack/RD/code/git_push/MemoryPool/MemPool/MemoryPool.cc
+iostream
+-
+MemoryPool.h
+/home/jack/RD/code/git_push/MemoryPool/MemPool/MemoryPool.h
+
+/home/jack/RD/code/git_push/MemoryPool/MemPool/MemoryPool.h
+stdio.h
+-
+
