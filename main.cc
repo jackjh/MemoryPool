@@ -47,7 +47,7 @@ int main() {
 			q.pop();
 		}
 	}
-	cout << "using MemoryPool..." << endl;		// 2
+	cout << "using MemoryPool..." << endl;		// 2 / 1
 #else
 	for (int i = 0; i < 3000; i++) {
 		for (int j = 0; j < 3000; j++) {

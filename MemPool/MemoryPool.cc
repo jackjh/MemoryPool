@@ -5,12 +5,13 @@ using namespace std;
 
 /*
 ** 内存块类构造函数
-** 参数n: 内存块中内存单元的数量，unitsize: 每个内存单元的大小
+** 参数n: 内存块中内存单元的数量，unitsize_: 每个内存单元的大小
 */
-MemoryBlock::MemoryBlock(ushort n, ushort unitsize_) : block_size(n * unitsize_), 
-													   nums_free(n - 1), 
-													   first_free_unit(1), 
-													   next(NULL) {
+MemoryBlock::MemoryBlock(ushort n, ushort unitsize_) : 
+				block_size(n * unitsize_), 
+				nums_free(n - 1), 
+				first_free_unit(1), 
+				next(NULL) {
 	char* pdata = data;
 	/*
 	**将内存块中的每个存储单元的前两个字节初始化为下一个存储单元的编号，最后一个存储单元不设值
@@ -23,7 +24,7 @@ MemoryBlock::MemoryBlock(ushort n, ushort unitsize_) : block_size(n * unitsize_)
 
 /*
 ** MemoryBlock中的new操作符重载
-** 参数_size: 内存块中存储单元的数量，_unitsize: 存储单元的大小
+** 参数size_: 内存块中存储单元的数量，unitsize_: 存储单元的大小
 */
 void* MemoryBlock::operator new(size_t, ushort size_, ushort unitsize_) {
 	return ::operator new(sizeof(MemoryBlock) + size_ * unitsize_);
@@ -33,18 +34,19 @@ void* MemoryBlock::operator new(size_t, ushort size_, ushort unitsize_) {
 ** MemoryBlock中的delete操作符重载
 ** 参数: 将要释放的指针
 */
-void MemoryBlock::operator delete(void* p, size_t) {
+void MemoryBlock::operator delete(void* p) {
 	::operator delete(p);
 }
 
 /*
 ** 内存池构造函数
-** 参数: _unitsize-内存块中的存储单元大小，_initsize-初始化分配的大小（存储单元数量），_growsize-扩展大小，_prealloc-预分配标志
+** 参数: unitsize_: 内存块中的存储单元大小，initsize_: 初始化分配的大小（存储单元数量），prealloc_: 预分配标志
 */
-MemoryPool::MemoryPool(ushort unitsize_, ushort unitnums_, bool _prealloc) : pMem(NULL), 
-																			 unitsize(unitsize_), 
-																			 unitnums(unitnums_), 
-																			 prealloc(_prealloc) {
+MemoryPool::MemoryPool(ushort unitsize_, ushort unitnums_, bool prealloc_) : 
+				pMem(NULL), 
+				unitsize(unitsize_), 
+				unitnums(unitnums_), 
+				prealloc(prealloc_) {
 	// 对unitsize进行调整
 	if (unitsize_ > 4) {
 		unitsize = (unitsize_ + ALIGNMENT - 1) &~(ALIGNMENT - 1);	// 将_unitsize调整至4(_ALIGNMENT)的倍数
@@ -57,7 +59,7 @@ MemoryPool::MemoryPool(ushort unitsize_, ushort unitnums_, bool _prealloc) : pMe
 	}
 
 	// 根据预分配标志是否进行预分配内存
-	if (_prealloc) {
+	if (prealloc_) {
 		Alloc();
 		pMem->first_free_unit = 0;
 		pMem->nums_free = unitnums;

@@ -13,14 +13,14 @@ typedef unsigned long  ulong;
 
 // 内存块
 struct MemoryBlock {
-	ushort block_size;
-	ushort nums_free;
+	ushort block_size;				// 内存块的大小
+	ushort nums_free;				// 内存块中存储单元的数量
 	ushort first_free_unit;			// 存储当前内存块中第一个空闲单元的前两个字节作为编号
 	MemoryBlock* next;
-	char data[1];
+	char data[1];					// 变长数组
 
 	static void* operator new(size_t, ushort, ushort);
-	static void operator delete(void* p, size_t);
+	static void operator delete(void* p);
 
 	MemoryBlock(ushort n, ushort unitsize);
 	~MemoryBlock(){ }
